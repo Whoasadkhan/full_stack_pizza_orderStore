@@ -15,7 +15,7 @@ const RegisterPage = () => {
   async function handleSubmit(ev) {
     ev.preventDefault();
     setCreatingUser(true);
-    setError(false);
+    setError(false); 
     setUserCreated(false);
     const response = await fetch('/api/register/', {
       method: 'POST',
