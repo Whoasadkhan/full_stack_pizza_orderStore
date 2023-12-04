@@ -8,7 +8,7 @@ function AuthLinks({status, userName}) {
   if (status === 'authenticated') {
     return (
       <>
-        <Link href={'/'} className="whitespace-nowrap">
+        <Link href={'/profile'} className="whitespace-nowrap">
           Hello, {' '}{userName}
         </Link>
         <button
@@ -34,6 +34,10 @@ function AuthLinks({status, userName}) {
 
 const Header = () => {
   const session = useSession();
+  let userName = session?.data?.user?.name;
+  if(userName?.includes(' ')){
+    userName = userName.split(' ')[0];
+  }
   console.log(session);
 
   return (
@@ -49,7 +53,7 @@ const Header = () => {
           <Link href={""}>Contact</Link>
         </nav>
         <nav className=" flex gap-4 items-center text-gray-500 font-semibold">
-          <AuthLinks status={session.status} userName={session?.data?.user?.name}/>
+          <AuthLinks status={session.status} userName={userName}/>
         </nav>
       </header>
     </div>
